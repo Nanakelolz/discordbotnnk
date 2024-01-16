@@ -1,6 +1,9 @@
 import { REST, Routes, Client, GatewayIntentBits } from 'discord.js';
-const rest = new REST({ version: '10' }).setToken("");
+import keys from './varprod.json' assert {type: 'json'};
+console.log(keys,keys["APIKEY"])
+const rest = new REST({ version: '10' }).setToken(keys["APIKEY"]);
 import fetch from 'node-fetch'; // Importez le module fetch
+
 import histoires  from './histoirennk.json' assert {type: 'json'};
 const fs = import('fs');
 const JSON_FILE = 'histoirennk.json';
@@ -40,7 +43,7 @@ function getLastWord(str) {
 try {
   console.log('Started refreshing application (/) commands.');
 
-  await rest.put(Routes.applicationCommands(""), { body: commands });
+  await rest.put(Routes.applicationCommands(keys["APPID"]), { body: commands });
 
   console.log('Successfully reloaded application (/) commands.');
 } catch (error) {
@@ -144,4 +147,4 @@ client.on('ready', () => {
   }
 });*/
 
-client.login("");
+client.login(keys["APIKEY"]);
