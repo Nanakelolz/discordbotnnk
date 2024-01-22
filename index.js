@@ -15,15 +15,6 @@ const client = new Client({
     GatewayIntentBits.GuildMessageReactions,
 	],
 });
-try {
-  console.log('Started refreshing application (/) commands.');
-
-  await rest.put(Routes.applicationCommands(keys["APPID"]), { body: commands });
-
-  console.log('Successfully reloaded application (/) commands.');
-} catch (error) {
-  console.error(error);
-}
 client.on('messageCreate', (message) => {
   if (message.author.bot) return; // ignore les messages des bots
   const auteurid = message.author.id;
